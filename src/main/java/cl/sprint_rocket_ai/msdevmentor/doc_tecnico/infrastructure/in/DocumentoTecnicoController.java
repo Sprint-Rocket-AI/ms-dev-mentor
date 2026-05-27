@@ -4,7 +4,6 @@ import cl.sprint_rocket_ai.msdevmentor.doc_tecnico.application.GetDocumentoTecni
 import cl.sprint_rocket_ai.msdevmentor.doc_tecnico.application.ListDocumentoTecnicoByProyecto;
 import cl.sprint_rocket_ai.msdevmentor.doc_tecnico.application.SaveDocumentoTecnico;
 import cl.sprint_rocket_ai.msdevmentor.doc_tecnico.application.UpdateDocumentoTecnico;
-import cl.sprint_rocket_ai.msdevmentor.doc_tecnico.infrastructure.in.DocumentoTecnicoRest;
 import cl.sprint_rocket_ai.msdevmentor.doc_tecnico.infrastructure.in.dtos.DocumentoTecnicoRequest;
 import cl.sprint_rocket_ai.msdevmentor.doc_tecnico.infrastructure.in.dtos.DocumentoTecnicoResponse;
 import jakarta.validation.Valid;

@@ -4,7 +4,6 @@ import cl.sprint_rocket_ai.msdevmentor.commons.domain.models.Documento;
 
 import cl.sprint_rocket_ai.msdevmentor.doc_ddl.domain.enums.MotorBaseDatos;
 import cl.sprint_rocket_ai.msdevmentor.commons.domain.enums.TipoDocumento;
-import cl.sprint_rocket_ai.msdevmentor.doc_ddl.domain.models.Tabla;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 

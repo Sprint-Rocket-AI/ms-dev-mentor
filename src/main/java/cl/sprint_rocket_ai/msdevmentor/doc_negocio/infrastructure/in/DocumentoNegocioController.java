@@ -4,7 +4,6 @@ import cl.sprint_rocket_ai.msdevmentor.doc_negocio.application.GetDocumentoNegoc
 import cl.sprint_rocket_ai.msdevmentor.doc_negocio.application.ListDocumentoNegocioByProyecto;
 import cl.sprint_rocket_ai.msdevmentor.doc_negocio.application.SaveDocumentoNegocio;
 import cl.sprint_rocket_ai.msdevmentor.doc_negocio.application.UpdateDocumentoNegocio;
-import cl.sprint_rocket_ai.msdevmentor.doc_negocio.infrastructure.in.DocumentoNegocioRest;
 import cl.sprint_rocket_ai.msdevmentor.doc_negocio.infrastructure.in.dtos.DocumentoNegocioRequest;
 import cl.sprint_rocket_ai.msdevmentor.doc_negocio.infrastructure.in.dtos.DocumentoNegocioResponse;
 import jakarta.validation.Valid;
