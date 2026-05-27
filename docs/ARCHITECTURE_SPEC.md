@@ -17,7 +17,7 @@ Documento normativo. Define las decisiones técnicas que todo código nuevo debe
 ### Estructura de paquetes
 
 ```
-cl.sprint_rocket_ai.msdevmentor
+cl.sprint_rocket_ai.ms_dev_mentor
 │
 ├── commons/                                    ← compartido entre slices
 │   ├── domain/
