@@ -1,4 +1,4 @@
-package cl.sprint_rocket_ai.ms_dev_mentor.doc_tecnico.domain.models;
+package cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.domain.models;
 
 import cl.sprint_rocket_ai.ms_dev_mentor.commons.domain.models.Documento;
 
@@ -8,8 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 
-@Document(collection = "documentos_tecnicos")
-public class DocumentoTecnico extends Documento {
+@Document(collection = "documentos_sistemas")
+public class DocumentoSistema extends Documento {
 
     @Field("url_repositorios")
     private List<String> urlRepos;
@@ -44,7 +44,7 @@ public class DocumentoTecnico extends Documento {
 
     @Override
     public TipoDocumento getTipoDocumento() {
-        return TipoDocumento.TECNICO;
+        return TipoDocumento.SISTEMA;
     }
 
 }

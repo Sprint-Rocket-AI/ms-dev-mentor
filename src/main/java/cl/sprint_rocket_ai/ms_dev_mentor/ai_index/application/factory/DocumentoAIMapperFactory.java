@@ -1,10 +1,6 @@
 package cl.sprint_rocket_ai.ms_dev_mentor.ai_index.application.factory;
 
-import cl.sprint_rocket_ai.ms_dev_mentor.ai_index.application.strategy.AbstractDocumentoAIMapperStrategy;
-import cl.sprint_rocket_ai.ms_dev_mentor.ai_index.application.strategy.DDLAIMapperStrategy;
-import cl.sprint_rocket_ai.ms_dev_mentor.ai_index.application.strategy.LineamientoAIMapperStrategy;
-import cl.sprint_rocket_ai.ms_dev_mentor.ai_index.application.strategy.NegocioAIMapperStrategy;
-import cl.sprint_rocket_ai.ms_dev_mentor.ai_index.application.strategy.TecnicoAIMapperStrategy;
+import cl.sprint_rocket_ai.ms_dev_mentor.ai_index.application.strategy.*;
 import cl.sprint_rocket_ai.ms_dev_mentor.commons.domain.enums.TipoDocumento;
 import org.springframework.stereotype.Component;
 
@@ -20,16 +16,16 @@ import org.springframework.stereotype.Component;
 public class DocumentoAIMapperFactory {
 
     private final LineamientoAIMapperStrategy lineamientoStrategy;
-    private final TecnicoAIMapperStrategy tecnicoStrategy;
+    private final SistemaAIMapperStrategy sistemaStrategy;
     private final NegocioAIMapperStrategy negocioStrategy;
     private final DDLAIMapperStrategy ddlStrategy;
 
     public DocumentoAIMapperFactory(LineamientoAIMapperStrategy lineamientoStrategy,
-                                    TecnicoAIMapperStrategy tecnicoStrategy,
+                                    SistemaAIMapperStrategy sistemaStrategy,
                                     NegocioAIMapperStrategy negocioStrategy,
                                     DDLAIMapperStrategy ddlStrategy) {
         this.lineamientoStrategy = lineamientoStrategy;
-        this.tecnicoStrategy = tecnicoStrategy;
+        this.sistemaStrategy = sistemaStrategy;
         this.negocioStrategy = negocioStrategy;
         this.ddlStrategy = ddlStrategy;
     }
@@ -37,7 +33,7 @@ public class DocumentoAIMapperFactory {
     public AbstractDocumentoAIMapperStrategy getMapperByDocumentType(TipoDocumento tipo) {
         return switch (tipo) {
             case LINEAMIENTO -> lineamientoStrategy;
-            case TECNICO     -> tecnicoStrategy;
+            case SISTEMA     -> sistemaStrategy;
             case NEGOCIO     -> negocioStrategy;
             case DDL         -> ddlStrategy;
         };

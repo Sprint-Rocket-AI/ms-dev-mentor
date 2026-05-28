@@ -1,14 +1,14 @@
-package cl.sprint_rocket_ai.ms_dev_mentor.doc_tecnico.infrastructure.in.dtos;
+package cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.infrastructure.in.dtos;
 
 import cl.sprint_rocket_ai.ms_dev_mentor.commons.domain.enums.EstadoDocumento;
 import cl.sprint_rocket_ai.ms_dev_mentor.commons.domain.enums.TipoDocumento;
-import cl.sprint_rocket_ai.ms_dev_mentor.doc_tecnico.domain.models.DocumentoTecnico;
+import cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.domain.models.DocumentoSistema;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDateTime;
 
-@Schema(description = "DTO para la respuesta de un Documento Técnico.")
-public record DocumentoTecnicoResponse(
+@Schema(description = "DTO para la respuesta de un Documento Sistema.")
+public record DocumentoSistemaResponse(
     @Schema(description = "ID único del documento.", example = "6653d50711312d1174a61517")
     String id,
     @Schema(description = "Título del documento.", example = "Diseño de la Arquitectura")
@@ -26,8 +26,8 @@ public record DocumentoTecnicoResponse(
     @Schema(description = "Fecha de la última actualización del documento.")
     LocalDateTime fechaActualizacion
 ) {
-    public static DocumentoTecnicoResponse from(DocumentoTecnico documento) {
-        return new DocumentoTecnicoResponse(
+    public static DocumentoSistemaResponse from(DocumentoSistema documento) {
+        return new DocumentoSistemaResponse(
                 documento.getId(),
                 documento.getTitulo(),
                 documento.getContenido(),

@@ -32,8 +32,6 @@ public class NegocioAIMapperStrategy extends AbstractDocumentoAIMapperStrategy {
 
         Map<String, Object> metadata = baseMetadata(doc);
         metadata.put(META_PROYECTO_ID, doc.getProyectoId());
-        // El modelo actual maneja una sola URL de fuente; se expone como lista
-        // para alinearse con el contrato de indexación RAG.
         metadata.put("fuentes", doc.getUrlFuente() == null
                 ? List.<String>of()
                 : List.of(doc.getUrlFuente()));
