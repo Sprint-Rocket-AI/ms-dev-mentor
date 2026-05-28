@@ -41,11 +41,7 @@ public record DocumentoLineamientoRequest(
         String categoria,
 
         @Schema(description = "Etiquetas de búsqueda asociadas al lineamiento.", example = "[\"spring-boot\", \"observabilidad\"]")
-        List<String> tags,
-
-        @NotNull(message = "El campo vigente es obligatorio")
-        @Schema(description = "Indica si el lineamiento está activo.", example = "true")
-        Boolean vigente
+        List<String> tags
 ) {
 
     public void applyTo(DocumentoLineamiento target) {
@@ -59,4 +55,3 @@ public record DocumentoLineamientoRequest(
         target.setTags(tags);
     }
 }
-
