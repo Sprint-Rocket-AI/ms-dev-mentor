@@ -15,7 +15,66 @@ import java.util.Optional;
 
 @Schema(description = "DTO para la creación/actualización de un Documento DDL. " +
         "Recibe la estructura ya modelada (tablas, columnas, relaciones); el cliente " +
-        "puede construirla manualmente o usar el endpoint de interpretación con IA.")
+        "puede construirla manualmente o usar el endpoint de interpretación con IA.",
+        example = """
+                {
+                  "titulo": "Modelo de datos - módulo de pagos",
+                  "proyectoId": "6653d50711312d1174a61516",
+                  "contenido": "CREATE TABLE pago (id BIGSERIAL PRIMARY KEY, cliente_id BIGINT NOT NULL, monto NUMERIC(12,2) NOT NULL);",
+                  "estado": "BORRADOR",
+                  "motorBd": "POSTGRESQL",
+                  "version": "1.0",
+                  "tablas": [
+                    {
+                      "nombre": "pago",
+                      "esquema": "public",
+                      "descripcion": "Registra los pagos realizados por los clientes.",
+                      "columnas": [
+                        {
+                          "nombre": "id",
+                          "tipoDato": "BIGSERIAL",
+                          "esPk": true,
+                          "esFk": false,
+                          "esNullable": false,
+                          "esUnique": true,
+                          "valorPorDefecto": null,
+                          "descripcion": "Identificador único del pago."
+                        },
+                        {
+                          "nombre": "cliente_id",
+                          "tipoDato": "BIGINT",
+                          "esPk": false,
+                          "esFk": true,
+                          "esNullable": false,
+                          "esUnique": false,
+                          "valorPorDefecto": null,
+                          "descripcion": "FK al cliente que realizó el pago."
+                        },
+                        {
+                          "nombre": "monto",
+                          "tipoDato": "NUMERIC(12,2)",
+                          "esPk": false,
+                          "esFk": false,
+                          "esNullable": false,
+                          "esUnique": false,
+                          "valorPorDefecto": "0",
+                          "descripcion": "Monto del pago en moneda local."
+                        }
+                      ],
+                      "relaciones": [
+                        {
+                          "columnaOrigen": "cliente_id",
+                          "tablaReferenciada": "cliente",
+                          "columnaReferenciada": "id",
+                          "tipoRelacion": "MUCHOS_A_UNO",
+                          "onDelete": "CASCADE",
+                          "onUpdate": "NO ACTION"
+                        }
+                      ]
+                    }
+                  ]
+                }
+                """)
 public record DocumentoDDLRequest(
         @NotBlank(message = "El título es obligatorio")
         @Size(max = 200, message = "El título no puede superar los 200 caracteres")
@@ -63,4 +122,3 @@ public record DocumentoDDLRequest(
                 .stream().map(TablaRequest::toDomain).toList());
     }
 }
-

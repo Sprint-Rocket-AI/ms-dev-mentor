@@ -9,7 +9,21 @@ import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
-@Schema(description = "DTO para la creación o actualización de un Documento Lineamiento.")
+@Schema(
+        description = "DTO para la creación o actualización de un Documento Lineamiento.",
+        example = """
+                {
+                  "titulo": "Lineamiento de diseño de microservicios",
+                  "contenido": "Cada microservicio debe ser autónomo y desplegable de forma independiente.",
+                  "proyectoId": "6653d50711312d1174a61516",
+                  "estado": "BORRADOR",
+                  "lineamiento": "Todo microservicio debe exponer un health check en /actuator/health.",
+                  "dominio": "microservicios",
+                  "categoria": "backend",
+                  "tags": ["spring-boot", "observabilidad"]
+                }
+                """
+)
 public record DocumentoLineamientoRequest(
         @NotBlank(message = "El título es obligatorio")
         @Size(max = 200, message = "El título no puede superar los 200 caracteres")

@@ -7,7 +7,18 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-@Schema(description = "DTO para la creación de un nuevo Documento Sistema.")
+@Schema(
+    description = "DTO para la creación de un nuevo Documento Sistema.",
+    example = """
+            {
+              "titulo": "Diseño de la Arquitectura de Microservicios",
+              "contenido": "El servicio de usuarios se comunicará con el servicio de pedidos a través de eventos asíncronos.",
+              "proyectoId": "6653d50711312d1174a61516",
+              "tipo": "SISTEMA",
+              "estado": "BORRADOR"
+            }
+            """
+)
 public record DocumentoSistemaRequest(
     @NotBlank(message = "El título es obligatorio")
     @Size(max = 200, message = "El título no puede superar los 200 caracteres")

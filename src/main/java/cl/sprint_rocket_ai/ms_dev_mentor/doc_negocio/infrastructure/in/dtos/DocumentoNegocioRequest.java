@@ -10,7 +10,25 @@ import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
-@Schema(description = "DTO para la creación/actualización de un Documento de Negocio.")
+@Schema(
+        description = "DTO para la creación/actualización de un Documento de Negocio.",
+        example = """
+                {
+                  "titulo": "Especificación de Requisitos de Usuario",
+                  "contenido": "El sistema debe permitir a los usuarios registrarse con su correo electrónico.",
+                  "proyectoId": "6653d50711312d1174a61516",
+                  "estado": "BORRADOR",
+                  "fuente": "CONFLUENCE",
+                  "urlFuente": "https://confluence.empresa.cl/pages/viewpage.action?pageId=12345",
+                  "tags": ["onboarding", "registro"],
+                  "criteriosAceptacion": [
+                    "El usuario debe poder registrarse con email",
+                    "Se debe validar el correo"
+                  ],
+                  "resumen": "Define los requisitos funcionales del módulo de registro."
+                }
+                """
+)
 public record DocumentoNegocioRequest(
         @NotBlank(message = "El título es obligatorio")
         @Size(max = 200, message = "El título no puede superar los 200 caracteres")
