@@ -8,7 +8,7 @@ Documento normativo. Define las decisiones técnicas que todo código nuevo debe
 
 **Vertical Slice + Hexagonal “directa” dentro de cada slice.**
 
-- **Vertical Slice puro:** el paquete raíz es la **feature** (`doc_negocio`, `doc_tecnico`, `doc_ddl`, …), no la capa. Cada slice contiene su propio `domain/`, `application/` e `infrastructure/`.
+- **Vertical Slice puro:** el paquete raíz es la **feature** (`doc_negocio`, `doc_sisteme`, `doc_ddl`, …), no la capa. Cada slice contiene su propio `domain/`, `application/` e `infrastructure/`.
 - **Slice autocontenido:** un slice solo puede importar de su propio paquete y de `commons/`. Nunca de otro slice.
 - **`commons/`:** solo lo que comparten ≥ 2 slices (`Documento` base, `EstadoDocumento`, `TipoDocumento`, `EntityNotFoundException`, `GlobalExceptionHandler`). Si una clase la usa **un solo** slice, vive dentro de ese slice.
 - **Hexagonal directa:** dentro del slice NO hay puertos de entrada. El controller REST inyecta directamente los casos de uso de `application`.
@@ -72,7 +72,7 @@ Claves:
 
 - **Atributos:** SIEMPRE en **español** (`titulo`, `proyectoId`, `fechaCreacion`, `tablas`).
 - **Métodos:** SIEMPRE en **inglés** (`execute`, `save`, `findById`, `applyTo`, `from`, `toDomain`).
-- **Casos de uso:** verbo inglés + entidad español → `SaveDocumentoNegocio`, `GetDocumentoDDLById`, `ListDocumentoTecnicoByProyecto`, `UpdateDocumentoDDL`.
+- **Casos de uso:** verbo inglés + entidad español → `SaveDocumentoNegocio`, `GetDocumentoDDLById`, `ListDocumentoSistemaByProyecto`, `UpdateDocumentoDDL`.
 - **Clases:** `<Entidad>Rest`, `<Entidad>Controller`, `<Entidad>AdapterOut`, `<Entidad>PortOut`, `<Entidad>MongoRepository`, `<Entidad>Request`, `<Entidad>Response`.
 - **Colecciones Mongo:** snake_case en plural (`documentos_negocio`, `documentos_ddl`).
 - **Campos persistidos:** `@Field("snake_case")` sobre atributo camelCase español.
