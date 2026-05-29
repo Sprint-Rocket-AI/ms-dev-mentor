@@ -1,5 +1,6 @@
 package cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.application;
 
+import cl.sprint_rocket_ai.ms_dev_mentor.ai_index.application.AIIndexService;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.domain.models.DocumentoDDL;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.domain.ports.out.DocumentoDDLPortOut;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.infrastructure.in.dtos.DocumentoDDLRequest;
@@ -15,9 +16,12 @@ public final class SaveDocumentoDDL {
 
     private static final Logger log = LoggerFactory.getLogger(SaveDocumentoDDL.class);
     private final DocumentoDDLPortOut documentoDDLPortOut;
+    private final AIIndexService aiIndexService;
 
-    public SaveDocumentoDDL(DocumentoDDLPortOut documentoDDLPortOut) {
+    public SaveDocumentoDDL(DocumentoDDLPortOut documentoDDLPortOut,
+                            AIIndexService aiIndexService) {
         this.documentoDDLPortOut = documentoDDLPortOut;
+        this.aiIndexService = aiIndexService;
     }
 
     public DocumentoDDLResponse execute(DocumentoDDLRequest request) {
@@ -26,6 +30,7 @@ public final class SaveDocumentoDDL {
         request.applyTo(documentoDDL);
         documentoDDL.setFechaCreacion(LocalDateTime.now());
         DocumentoDDL saved = documentoDDLPortOut.save(documentoDDL);
+        aiIndexService.index(saved);
         log.info("Fin de la creación del documento DDL con id: {}", saved.getId());
         return DocumentoDDLResponse.from(saved);
     }

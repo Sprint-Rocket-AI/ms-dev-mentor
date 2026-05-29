@@ -1,5 +1,6 @@
 package cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.application;
 
+import cl.sprint_rocket_ai.ms_dev_mentor.ai_index.application.AIIndexService;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.domain.models.DocumentoSistema;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.domain.ports.out.DocumentoSistemaPortOut;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.infrastructure.in.dtos.DocumentoSistemaRequest;
@@ -13,9 +14,12 @@ public final class SaveDocumentoSistema {
 
     private static final Logger log = LoggerFactory.getLogger(SaveDocumentoSistema.class);
     private final DocumentoSistemaPortOut documentoSistemaPortOut;
+    private final AIIndexService aiIndexService;
 
-    public SaveDocumentoSistema(DocumentoSistemaPortOut documentoSistemaPortOut) {
+    public SaveDocumentoSistema(DocumentoSistemaPortOut documentoSistemaPortOut,
+                                AIIndexService aiIndexService) {
         this.documentoSistemaPortOut = documentoSistemaPortOut;
+        this.aiIndexService = aiIndexService;
     }
 
     public DocumentoSistemaResponse execute(DocumentoSistemaRequest request) {
@@ -26,6 +30,7 @@ public final class SaveDocumentoSistema {
         documentoSistema.setProyectoId(request.proyectoId());
         documentoSistema.setEstado(request.estado());
         DocumentoSistema documentoPersistido = documentoSistemaPortOut.save(documentoSistema);
+        aiIndexService.index(documentoPersistido);
         log.info("Fin de la creación del documento sistema con id: {}", documentoPersistido.getId());
         return DocumentoSistemaResponse.from(documentoPersistido);
     }
