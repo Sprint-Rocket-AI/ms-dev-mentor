@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Schema(
     description = "DTO para la creación de un nuevo Documento Sistema.",
     example = """
@@ -15,7 +17,10 @@ import jakarta.validation.constraints.Size;
               "contenido": "El servicio de usuarios se comunicará con el servicio de pedidos a través de eventos asíncronos.",
               "proyectoId": "6653d50711312d1174a61516",
               "tipo": "SISTEMA",
-              "estado": "BORRADOR"
+              "estado": "BORRADOR",
+              "urlRepos": ["https://github.com/empresa/usuarios-service"],
+              "stack": ["spring-boot", "mongodb"],
+              "devs": ["ana.perez", "carlos.rojas"]
             }
             """
 )
@@ -35,6 +40,12 @@ public record DocumentoSistemaRequest(
     TipoDocumento tipo,
     @NotNull(message = "El estado es obligatorio")
     @Schema(description = "Estado actual del documento.", implementation = EstadoDocumento.class, example = "BORRADOR")
-    EstadoDocumento estado
+    EstadoDocumento estado,
+    @Schema(description = "URLs de repositorios asociados al documento.", example = "[\"https://github.com/empresa/usuarios-service\"]")
+    List<String> urlRepos,
+    @Schema(description = "Stack tecnologico del sistema.", example = "[\"spring-boot\", \"mongodb\"]")
+    List<String> stack,
+    @Schema(description = "Equipo de desarrollo asociado.", example = "[\"ana.perez\", \"carlos.rojas\"]")
+    List<String> devs
 ) {
 }

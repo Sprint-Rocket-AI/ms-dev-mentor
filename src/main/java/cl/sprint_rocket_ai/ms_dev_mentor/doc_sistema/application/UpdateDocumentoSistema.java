@@ -27,6 +27,9 @@ public final class UpdateDocumentoSistema {
                     existingDocument.setContenido(documentoSistema.contenido());
                     existingDocument.setEstado(documentoSistema.estado());
                     existingDocument.setProyectoId(documentoSistema.proyectoId());
+                    existingDocument.setUrlRepos(documentoSistema.urlRepos());
+                    existingDocument.setStack(documentoSistema.stack());
+                    existingDocument.setDevs(documentoSistema.devs());
                     DocumentoSistema updatedDocument = documentoSistemaPortOut.save(existingDocument);
                     log.info("Fin de la actualizacion del documento sistema con id: {}", id);
                     return updatedDocument;

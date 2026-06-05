@@ -29,6 +29,9 @@ public final class SaveDocumentoSistema {
         documentoSistema.setContenido(request.contenido());
         documentoSistema.setProyectoId(request.proyectoId());
         documentoSistema.setEstado(request.estado());
+        documentoSistema.setUrlRepos(request.urlRepos());
+        documentoSistema.setStack(request.stack());
+        documentoSistema.setDevs(request.devs());
         DocumentoSistema documentoPersistido = documentoSistemaPortOut.save(documentoSistema);
         aiIndexService.index(documentoPersistido);
         log.info("Fin de la creación del documento sistema con id: {}", documentoPersistido.getId());

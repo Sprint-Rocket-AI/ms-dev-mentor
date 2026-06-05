@@ -27,9 +27,6 @@ public final class AIIndexRestClientAdapter implements AIIndexPortOut {
 
     @Override
     public void index(AIIndexRequest request) {
-        if (request == null) {
-            throw new IllegalArgumentException("El AIIndexRequest no puede ser null");
-        }
         log.info("Enviando documento {} (tipo={}) al indexador AI", request.id(), request.tipo());
         try {
             restClient.post()

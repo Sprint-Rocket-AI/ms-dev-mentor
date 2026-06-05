@@ -6,6 +6,7 @@ import cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.domain.models.DocumentoSist
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Schema(description = "DTO para la respuesta de un Documento Sistema.")
 public record DocumentoSistemaResponse(
@@ -21,6 +22,12 @@ public record DocumentoSistemaResponse(
     TipoDocumento tipo,
     @Schema(description = "Estado del documento.", implementation = EstadoDocumento.class)
     EstadoDocumento estado,
+    @Schema(description = "URLs de repositorios asociados al documento.")
+    List<String> urlRepos,
+    @Schema(description = "Stack tecnologico del sistema.")
+    List<String> stack,
+    @Schema(description = "Equipo de desarrollo asociado.")
+    List<String> devs,
     @Schema(description = "Fecha de creación del documento.")
     LocalDateTime fechaCreacion,
     @Schema(description = "Fecha de la última actualización del documento.")
@@ -34,6 +41,9 @@ public record DocumentoSistemaResponse(
                 documento.getProyectoId(),
                 documento.getTipoDocumento(),
                 documento.getEstado(),
+                documento.getUrlRepos(),
+                documento.getStack(),
+                documento.getDevs(),
                 documento.getFechaCreacion(),
                 documento.getFechaActualizacion()
         );
