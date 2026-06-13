@@ -1,4 +1,4 @@
-# ms-dev-mentor — Spec Arquitectónico
+# ms-context-builder — Spec Arquitectónico
 
 Documento normativo. Define las decisiones técnicas que todo código nuevo debe respetar.
 
@@ -17,7 +17,7 @@ Documento normativo. Define las decisiones técnicas que todo código nuevo debe
 ### Estructura de paquetes
 
 ```
-cl.sprint_rocket_ai.ms_dev_mentor
+cl.sprint_rocket_ai.ms_context_builder
 │
 ├── commons/                                    ← compartido entre slices
 │   ├── domain/

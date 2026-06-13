@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>cl.sprint_rocket_ai</groupId>
-    <artifactId>ms-dev-mentor</artifactId>
+    <artifactId>context-builder</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ms-dev-mentor</name>
-    <description>ms-dev-mentor</description>
+    <name>context-builder</name>
+    <description>context-builder</description>
     <url/>
     <licenses>
         <license/>
