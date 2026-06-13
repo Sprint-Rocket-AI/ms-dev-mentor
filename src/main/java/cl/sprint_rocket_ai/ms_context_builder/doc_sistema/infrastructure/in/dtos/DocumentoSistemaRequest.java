@@ -31,10 +31,6 @@ public record DocumentoSistemaRequest(
     @Schema(description = "Contenido del documento en formato Markdown o texto plano.", example = "El servicio de usuarios se comunicará con el servicio de pedidos a través de eventos...")
     String contenido,
 
-    @NotNull(message = "El tipo es obligatorio")
-    @Schema(description = "Tipo de documento.", implementation = TipoDocumento.class, example = "SISTEMA")
-    TipoDocumento tipo,
-
     @Schema(description = "URLs de repositorios asociados al documento.", example = "[\"https://github.com/empresa/usuarios-service\"]")
     List<String> urlRepos,
 

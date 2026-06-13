@@ -1,14 +1,14 @@
 services:
   mongodb:
     image: mongo:7
-    container_name: ms-dev-mentor-mongodb
+    container_name: springrocket-mongodb
     restart: unless-stopped
     ports:
       - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
-      MONGO_INITDB_DATABASE: ms_dev_mentor
+      MONGO_INITDB_DATABASE: mydatabase
     volumes:
       - mongodb_data:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro

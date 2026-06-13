@@ -17,7 +17,7 @@ import org.springframework.web.client.RestClientResponseException;
 public final class AIIndexRestClientAdapter implements AIIndexPortOut {
 
     private static final Logger log = LoggerFactory.getLogger(AIIndexRestClientAdapter.class);
-    private static final String INDEX_PATH = "/index";
+    private static final String INDEX_PATH = "/rag/index";
 
     private final RestClient restClient;
 
