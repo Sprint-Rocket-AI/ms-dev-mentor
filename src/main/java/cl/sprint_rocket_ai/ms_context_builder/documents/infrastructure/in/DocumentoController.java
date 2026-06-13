@@ -43,4 +43,18 @@ public interface DocumentoController {
 	)
 	ResponseEntity<List<DocumentoResponse>> getAll();
 
+	@Operation(
+			summary = "Busca todos los documentos"
+	)
+	@ApiResponse(
+			responseCode = "204",
+			description = "Elimina documento por id",
+			content = @Content(mediaType = "application/json",
+					schema = @Schema(implementation = DocumentoResponse.class))
+	)
+	@ApiResponse(responseCode = "400", description = "Solicitud inválida")
+	ResponseEntity<DocumentoResponse> deleteById(
+			@Parameter(description = "ID del documento") String id
+	);
+
 }

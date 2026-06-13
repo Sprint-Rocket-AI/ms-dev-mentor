@@ -1,5 +1,6 @@
 package cl.sprint_rocket_ai.ms_context_builder.documents.infrastructure.in;
 
+import cl.sprint_rocket_ai.ms_context_builder.documents.application.DeleteDocumentoById;
 import cl.sprint_rocket_ai.ms_context_builder.documents.application.GetAllDocumentos;
 import cl.sprint_rocket_ai.ms_context_builder.documents.application.GetDocumentoById;
 import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoResponse;
@@ -14,11 +15,15 @@ public final class DocumentoRestController implements DocumentoController {
 
     private final GetAllDocumentos getAllDocumentos;
     private final GetDocumentoById getDocumentoById;
+    private final DeleteDocumentoById deleteDocumentoById;
 
     public DocumentoRestController(GetAllDocumentos getAllDocumentos,
-                                   GetDocumentoById getDocumentoById) {
+                                   GetDocumentoById getDocumentoById,
+                                   DeleteDocumentoById deleteDocumentoById
+    ) {
         this.getAllDocumentos = getAllDocumentos;
         this.getDocumentoById = getDocumentoById;
+        this.deleteDocumentoById = deleteDocumentoById;
     }
 
     @Override
@@ -32,6 +37,13 @@ public final class DocumentoRestController implements DocumentoController {
     @GetMapping
     public ResponseEntity<List<DocumentoResponse>> getAll() {
         return ResponseEntity.ok(getAllDocumentos.execute());
+    }
+
+    @Override
+    @DeleteMapping("/{id}")
+    public ResponseEntity<DocumentoResponse> deleteById(@PathVariable String id) {
+        deleteDocumentoById.execute(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
