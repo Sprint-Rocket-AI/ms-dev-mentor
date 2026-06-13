@@ -27,13 +27,31 @@ public final class AIIndexService {
     }
 
     public void index(DocumentoContexto documentoContexto) {
+        AIIndexRequest request = mapRequest(documentoContexto);
+        log.info("Indexando Documento");
+        aiIndexPortOut.index(request);
+        log.info("Documento indexado");
+    }
+
+    public void update(DocumentoContexto documentoContexto) {
+        AIIndexRequest request = mapRequest(documentoContexto);
+        log.info("Actualizando índice del documento con id: {}", documentoContexto.getId());
+        aiIndexPortOut.update(documentoContexto.getId(), request);
+        log.info("Índice del documento {} actualizado", documentoContexto.getId());
+    }
+
+    public void deleteById(String id) {
+        log.info("Eliminando índice del documento con id: {}", id);
+        aiIndexPortOut.deleteById(id);
+        log.info("Índice del documento {} eliminado", id);
+    }
+
+    private AIIndexRequest mapRequest(DocumentoContexto documentoContexto) {
         TipoDocumento tipoDocumento = documentoContexto.getTipoDocumento();
         log.info("Obtendiendo Mapper para tipo de documento: {}", tipoDocumento);
         AbstractDocumentoAIMapperStrategy mapper = documentoAIMapperFactory.getMapperByDocumentType(tipoDocumento);
         AIIndexRequest request = mapper.map(documentoContexto);
         log.info("Mapper obtenido: {}", mapper.getClass().getSimpleName());
-        log.info("Indexando Documento");
-        aiIndexPortOut.index(request);
-        log.info("Documento indexado");
+        return request;
     }
 }

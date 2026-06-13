@@ -7,7 +7,10 @@ import cl.sprint_rocket_ai.ms_context_builder.ai_index.domain.models.AIIndexRequ
  */
 public interface AIIndexPortOut {
 
-    /** Envía un documento al servicio de indexación. */
     void index(AIIndexRequest request);
+
+    void update(String id, AIIndexRequest request);
+
+    void deleteById(String id);
 }
 

@@ -1,5 +1,6 @@
 package cl.sprint_rocket_ai.ms_context_builder.documents.application.doc_lineamiento;
 
+import cl.sprint_rocket_ai.ms_context_builder.ai_index.application.AIIndexService;
 import cl.sprint_rocket_ai.ms_context_builder.documents.domain.exceptions.EntityNotFoundException;
 import cl.sprint_rocket_ai.ms_context_builder.documents.infrastructure.in.doc_lineamiento.dtos.DocumentoLineamientoRequest;
 import cl.sprint_rocket_ai.ms_context_builder.documents.infrastructure.in.doc_lineamiento.dtos.DocumentoLineamientoResponse;
@@ -15,9 +16,12 @@ public final class UpdateDocumentoLineamiento {
 
     private static final Logger log = LoggerFactory.getLogger(UpdateDocumentoLineamiento.class);
     private final DocumentoLineamientoMongoRepository repository;
+    private final AIIndexService aiIndexService;
 
-    public UpdateDocumentoLineamiento(DocumentoLineamientoMongoRepository repository) {
+    public UpdateDocumentoLineamiento(DocumentoLineamientoMongoRepository repository,
+                                      AIIndexService aiIndexService) {
         this.repository = repository;
+        this.aiIndexService = aiIndexService;
     }
 
     public DocumentoLineamientoResponse execute(String id, DocumentoLineamientoRequest request) {
@@ -26,7 +30,9 @@ public final class UpdateDocumentoLineamiento {
                 .map( existing -> {
                     request.applyTo(existing);
                     existing.setFechaActualizacion(LocalDateTime.now());
-                    return repository.save(existing);
+                    var updated = repository.save(existing);
+                    aiIndexService.update(updated);
+                    return updated;
                 })
                 .map(DocumentoLineamientoResponse::from)
                 .map(response -> {
