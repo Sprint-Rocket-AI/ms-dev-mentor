@@ -10,6 +10,4 @@ public interface DocumentoSistemaPortOut {
 
     Optional<DocumentoSistema> findById(String id);
 
-    List<DocumentoSistema> findByProyectoId(String proyectoId);
-
 }

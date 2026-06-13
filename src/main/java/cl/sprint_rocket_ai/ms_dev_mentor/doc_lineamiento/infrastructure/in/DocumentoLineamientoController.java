@@ -1,7 +1,6 @@
 package cl.sprint_rocket_ai.ms_dev_mentor.doc_lineamiento.infrastructure.in;
 
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_lineamiento.application.GetDocumentoLineamientoById;
-import cl.sprint_rocket_ai.ms_dev_mentor.doc_lineamiento.application.ListDocumentoLineamientoByProyecto;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_lineamiento.application.SaveDocumentoLineamiento;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_lineamiento.application.UpdateDocumentoLineamiento;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_lineamiento.infrastructure.in.dtos.DocumentoLineamientoRequest;
@@ -25,16 +24,13 @@ public final class DocumentoLineamientoController implements DocumentoLineamient
 
     private final SaveDocumentoLineamiento saveDocumentoLineamiento;
     private final GetDocumentoLineamientoById getDocumentoLineamientoById;
-    private final ListDocumentoLineamientoByProyecto listDocumentoLineamientoByProyecto;
     private final UpdateDocumentoLineamiento updateDocumentoLineamiento;
 
     public DocumentoLineamientoController(SaveDocumentoLineamiento saveDocumentoLineamiento,
                                           GetDocumentoLineamientoById getDocumentoLineamientoById,
-                                          ListDocumentoLineamientoByProyecto listDocumentoLineamientoByProyecto,
                                           UpdateDocumentoLineamiento updateDocumentoLineamiento) {
         this.saveDocumentoLineamiento = saveDocumentoLineamiento;
         this.getDocumentoLineamientoById = getDocumentoLineamientoById;
-        this.listDocumentoLineamientoByProyecto = listDocumentoLineamientoByProyecto;
         this.updateDocumentoLineamiento = updateDocumentoLineamiento;
     }
 
@@ -48,12 +44,6 @@ public final class DocumentoLineamientoController implements DocumentoLineamient
     @GetMapping("/{id}")
     public ResponseEntity<DocumentoLineamientoResponse> getById(@PathVariable String id) {
         return ResponseEntity.ok(getDocumentoLineamientoById.execute(id));
-    }
-
-    @Override
-    @GetMapping("/proyecto/{proyectoId}")
-    public ResponseEntity<List<DocumentoLineamientoResponse>> getByProyectoId(@PathVariable String proyectoId) {
-        return ResponseEntity.ok(listDocumentoLineamientoByProyecto.execute(proyectoId));
     }
 
     @Override

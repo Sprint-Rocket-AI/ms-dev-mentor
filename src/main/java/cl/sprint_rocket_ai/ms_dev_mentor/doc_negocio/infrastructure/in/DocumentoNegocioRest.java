@@ -37,14 +37,6 @@ public interface DocumentoNegocioRest {
     })
     ResponseEntity<DocumentoNegocioResponse> getById(@Parameter(description = "ID del documento a obtener") @PathVariable String id);
 
-    @Operation(summary = "Listar todos los documentos de negocio de un proyecto")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Listado de documentos",
-                    content = @Content(mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = DocumentoNegocioResponse.class))))
-    })
-    ResponseEntity<List<DocumentoNegocioResponse>> getByProyectoId(@Parameter(description = "ID del proyecto para listar sus documentos") @PathVariable String proyectoId);
-
     @Operation(summary = "Actualizar un documento de negocio existente")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Documento actualizado exitosamente",

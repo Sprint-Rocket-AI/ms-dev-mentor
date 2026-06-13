@@ -34,12 +34,5 @@ public final class DocumentoLineamientoAdapterOut implements DocumentoLineamient
         return documentoLineamientoMongoRepository.findById(id);
     }
 
-    @Override
-    public List<DocumentoLineamiento> findByProyectoId(String proyectoId) {
-        log.info("Listando Documentos Lineamiento por proyectoId: {}", proyectoId);
-        List<DocumentoLineamiento> docs = documentoLineamientoMongoRepository.findByProyectoId(proyectoId);
-        log.info("Cantidad de documentos lineamiento encontrados: {}", docs.size());
-        return docs;
-    }
 }
 

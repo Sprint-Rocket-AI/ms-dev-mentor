@@ -25,8 +25,6 @@ public final class UpdateDocumentoSistema {
                 .map(existingDocument -> {
                     existingDocument.setTitulo(documentoSistema.titulo());
                     existingDocument.setContenido(documentoSistema.contenido());
-                    existingDocument.setEstado(documentoSistema.estado());
-                    existingDocument.setProyectoId(documentoSistema.proyectoId());
                     existingDocument.setUrlRepos(documentoSistema.urlRepos());
                     existingDocument.setStack(documentoSistema.stack());
                     existingDocument.setDevs(documentoSistema.devs());

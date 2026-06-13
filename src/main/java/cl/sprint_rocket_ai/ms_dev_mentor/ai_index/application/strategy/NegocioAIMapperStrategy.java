@@ -31,10 +31,6 @@ public class NegocioAIMapperStrategy extends AbstractDocumentoAIMapperStrategy {
         );
 
         Map<String, Object> metadata = baseMetadata(doc);
-        metadata.put(META_PROYECTO_ID, doc.getProyectoId());
-        metadata.put("fuentes", doc.getUrlFuente() == null
-                ? List.<String>of()
-                : List.of(doc.getUrlFuente()));
 
         return new AIIndexRequest(
                 doc.getId(),

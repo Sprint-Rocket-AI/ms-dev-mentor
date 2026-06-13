@@ -47,17 +47,6 @@ public interface DocumentoSistemaRest {
 	ResponseEntity<DocumentoSistemaResponse> getById(@Parameter(description = "ID del documento a obtener") String id);
 
 	@Operation(
-			summary = "Listar todos los documentos sistemas de un proyecto"
-	)
-	@ApiResponse(
-			responseCode = "200",
-			description = "Listado de documentos",
-			content = @Content(mediaType = "application/json",
-					array = @ArraySchema(schema = @Schema(implementation = DocumentoSistemaResponse.class))))
-	@ApiResponse(responseCode = "400", description = "Proyecto inválido")
-	ResponseEntity<List<DocumentoSistemaResponse>> getByProyectoId(@Parameter(description = "ID del proyecto para listar sus documentos") String proyectoId);
-
-	@Operation(
 			summary = "Actualizar un documento sistema existente"
 	)
 	@ApiResponse(

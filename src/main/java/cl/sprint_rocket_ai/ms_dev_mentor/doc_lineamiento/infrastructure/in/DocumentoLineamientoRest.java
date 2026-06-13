@@ -44,16 +44,6 @@ public interface DocumentoLineamientoRest {
             @Parameter(description = "ID del documento a obtener") String id
     );
 
-    @Operation(summary = "Listar todos los documentos lineamiento de un proyecto")
-    @ApiResponse(
-            responseCode = "200",
-            description = "Listado de documentos",
-            content = @Content(mediaType = "application/json",
-                    array = @ArraySchema(schema = @Schema(implementation = DocumentoLineamientoResponse.class))))
-    @ApiResponse(responseCode = "400", description = "Proyecto inválido")
-    ResponseEntity<List<DocumentoLineamientoResponse>> getByProyectoId(
-            @Parameter(description = "ID del proyecto para listar sus documentos") String proyectoId
-    );
 
     @Operation(summary = "Actualizar un documento lineamiento existente")
     @ApiResponse(

@@ -17,16 +17,11 @@ public class LineamientoAIMapperStrategy extends AbstractDocumentoAIMapperStrate
 
         String contenido = """
                 Lineamiento: %s
-
-                Contexto:
-                %s""".formatted(
-                nullSafe(doc.getLineamiento()),
+                """.formatted(
                 nullSafe(doc.getContenido())
         );
 
         Map<String, Object> metadata = baseMetadata(doc);
-        metadata.put("dominio", doc.getDominio());
-        metadata.put("categoria", doc.getCategoria());
 
         return new AIIndexRequest(
                 doc.getId(),

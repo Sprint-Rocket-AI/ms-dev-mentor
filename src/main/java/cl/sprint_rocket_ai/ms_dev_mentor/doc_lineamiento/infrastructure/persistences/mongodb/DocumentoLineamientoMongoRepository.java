@@ -6,7 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface DocumentoLineamientoMongoRepository extends MongoRepository<DocumentoLineamiento, String> {
-
-    List<DocumentoLineamiento> findByProyectoId(String proyectoId);
 }
 

@@ -1,6 +1,5 @@
 package cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.infrastructure.in.dtos;
 
-import cl.sprint_rocket_ai.ms_dev_mentor.commons.domain.enums.EstadoDocumento;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.domain.enums.MotorBaseDatos;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.domain.models.DocumentoDDL;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -19,9 +18,7 @@ import java.util.Optional;
         example = """
                 {
                   "titulo": "Modelo de datos - módulo de pagos",
-                  "proyectoId": "6653d50711312d1174a61516",
                   "contenido": "CREATE TABLE pago (id BIGSERIAL PRIMARY KEY, cliente_id BIGINT NOT NULL, monto NUMERIC(12,2) NOT NULL);",
-                  "estado": "BORRADOR",
                   "motorBd": "POSTGRESQL",
                   "version": "1.0",
                   "tablas": [
@@ -81,18 +78,10 @@ public record DocumentoDDLRequest(
         @Schema(description = "Título del documento.", example = "Modelo de datos - módulo de pagos")
         String titulo,
 
-        @NotBlank(message = "El proyectoId es obligatorio")
-        @Schema(description = "ID del proyecto al que pertenece el documento.", example = "6653d50711312d1174a61516")
-        String proyectoId,
-
         @NotBlank(message = "El contenido (script DDL crudo) es obligatorio")
         @Schema(description = "Script SQL DDL crudo (CREATE TABLE, ALTER, etc.).",
                 example = "CREATE TABLE pago (id BIGSERIAL PRIMARY KEY, monto NUMERIC(12,2) NOT NULL);")
         String contenido,
-
-        @NotNull(message = "El estado es obligatorio")
-        @Schema(description = "Estado actual del documento.", implementation = EstadoDocumento.class, example = "BORRADOR")
-        EstadoDocumento estado,
 
         @NotNull(message = "El motor de base de datos es obligatorio")
         @Schema(description = "Motor de base de datos.", implementation = MotorBaseDatos.class, example = "POSTGRESQL")
@@ -113,9 +102,7 @@ public record DocumentoDDLRequest(
      */
     public void applyTo(DocumentoDDL target) {
         target.setTitulo(titulo);
-        target.setProyectoId(proyectoId);
         target.setContenido(contenido);
-        target.setEstado(estado);
         target.setMotorBd(motorBd);
         target.setVersion(version);
         target.setTablas(Optional.ofNullable(tablas).orElseGet(List::of)

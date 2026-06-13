@@ -30,7 +30,6 @@ public class SistemaAIMapperStrategy extends AbstractDocumentoAIMapperStrategy {
         );
 
         Map<String, Object> metadata = baseMetadata(doc);
-        metadata.put(META_PROYECTO_ID, doc.getProyectoId());
         metadata.put("repositorios", safeList(doc.getUrlRepos()));
 
         return new AIIndexRequest(

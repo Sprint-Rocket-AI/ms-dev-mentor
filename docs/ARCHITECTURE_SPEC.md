@@ -10,7 +10,7 @@ Documento normativo. Define las decisiones técnicas que todo código nuevo debe
 
 - **Vertical Slice puro:** el paquete raíz es la **feature** (`doc_negocio`, `doc_sisteme`, `doc_ddl`, …), no la capa. Cada slice contiene su propio `domain/`, `application/` e `infrastructure/`.
 - **Slice autocontenido:** un slice solo puede importar de su propio paquete y de `commons/`. Nunca de otro slice.
-- **`commons/`:** solo lo que comparten ≥ 2 slices (`Documento` base, `EstadoDocumento`, `TipoDocumento`, `EntityNotFoundException`, `GlobalExceptionHandler`). Si una clase la usa **un solo** slice, vive dentro de ese slice.
+- **`commons/`:** solo lo que comparten ≥ 2 slices (`Documento` base, `TipoDocumento`, `EntityNotFoundException`, `GlobalExceptionHandler`). Si una clase la usa **un solo** slice, vive dentro de ese slice.
 - **Hexagonal directa:** dentro del slice NO hay puertos de entrada. El controller REST inyecta directamente los casos de uso de `application`.
 - **Puertos de salida sí:** interfaces en `<slice>/domain/ports/out/` para desacoplar `application` de la infraestructura.
 
@@ -21,7 +21,7 @@ cl.sprint_rocket_ai.ms_dev_mentor
 │
 ├── commons/                                    ← compartido entre slices
 │   ├── domain/
-│   │   ├── enums/                              (EstadoDocumento, TipoDocumento)
+│   │   ├── enums/                              
 │   │   ├── exceptions/                         (EntityNotFoundException)
 │   │   └── models/                             (Documento – clase base abstracta)
 │   └── infrastructure/                         (GlobalExceptionHandler)
@@ -70,7 +70,7 @@ Claves:
 
 ## 3. Naming
 
-- **Atributos:** SIEMPRE en **español** (`titulo`, `proyectoId`, `fechaCreacion`, `tablas`).
+- **Atributos:** SIEMPRE en **español** (`titulo`, `fechaCreacion`, `tablas`).
 - **Métodos:** SIEMPRE en **inglés** (`execute`, `save`, `findById`, `applyTo`, `from`, `toDomain`).
 - **Casos de uso:** verbo inglés + entidad español → `SaveDocumentoNegocio`, `GetDocumentoDDLById`, `ListDocumentoSistemaByProyecto`, `UpdateDocumentoDDL`.
 - **Clases:** `<Entidad>Rest`, `<Entidad>Controller`, `<Entidad>AdapterOut`, `<Entidad>PortOut`, `<Entidad>MongoRepository`, `<Entidad>Request`, `<Entidad>Response`.
@@ -89,7 +89,7 @@ Claves:
 - **Value Objects embebidos** (p. ej. `Tabla`, `Columna`, `Relacion` en `doc_ddl`): viven junto al modelo raíz en `<slice>/domain/models/`.
 - **Enums** propios del slice en `<slice>/domain/enums/`; los compartidos en `commons/domain/enums/`.
 - **Excepciones** en `commons/domain/exceptions/`, extienden `RuntimeException`. Usar `EntityNotFoundException` para 404.
-- **Puertos de salida:** interfaces en `<slice>/domain/ports/out/` que operan sobre modelos de dominio (`save`, `findById`, `findByProyectoId`). No devuelven tipos de Spring Data ni DTOs.
+- **Puertos de salida:** interfaces en `<slice>/domain/ports/out/` que operan sobre modelos de dominio (`save`, `findById`). No devuelven tipos de Spring Data ni DTOs.
 
 ---
 
@@ -150,7 +150,6 @@ Base path `/api/<entidades>`:
 |---------------------|-------|----------------------------|:------:|----------------------------|
 | Crear               | POST  | `/`                        | 201    | `Save<Entidad>`            |
 | Obtener por id      | GET   | `/{id}`                    | 200    | `Get<Entidad>ById`         |
-| Listar por proyecto | GET   | `/proyecto/{proyectoId}`   | 200    | `List<Entidad>ByProyecto`  |
 | Actualizar          | PUT   | `/{id}`                    | 200    | `Update<Entidad>`          |
 
 Errores documentados en Swagger: `400` (request inválida), `404` (no encontrado).

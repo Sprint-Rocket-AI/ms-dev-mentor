@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface DocumentoDDLMongoRepository extends MongoRepository<DocumentoDDL, String> {
 
-    List<DocumentoDDL> findByProyectoId(String proyectoId);
 }
 

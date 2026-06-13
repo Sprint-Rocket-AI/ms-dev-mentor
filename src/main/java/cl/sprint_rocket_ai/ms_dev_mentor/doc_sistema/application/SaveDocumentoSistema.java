@@ -27,8 +27,6 @@ public final class SaveDocumentoSistema {
         DocumentoSistema documentoSistema = new DocumentoSistema();
         documentoSistema.setTitulo(request.titulo());
         documentoSistema.setContenido(request.contenido());
-        documentoSistema.setProyectoId(request.proyectoId());
-        documentoSistema.setEstado(request.estado());
         documentoSistema.setUrlRepos(request.urlRepos());
         documentoSistema.setStack(request.stack());
         documentoSistema.setDevs(request.devs());

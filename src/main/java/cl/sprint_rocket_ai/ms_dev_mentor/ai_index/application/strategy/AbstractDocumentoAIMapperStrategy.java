@@ -17,7 +17,6 @@ public abstract class AbstractDocumentoAIMapperStrategy {
     protected static final String META_DOCUMENTO_ID = "documentoId";
     protected static final String META_TIPO = "tipo";
     protected static final String META_TITULO = "titulo";
-    protected static final String META_PROYECTO_ID = "proyectoId";
 
     public abstract AIIndexRequest map(Documento documento);
 

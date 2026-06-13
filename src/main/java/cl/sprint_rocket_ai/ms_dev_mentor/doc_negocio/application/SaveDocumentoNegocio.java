@@ -25,7 +25,7 @@ public final class SaveDocumentoNegocio {
     }
 
     public DocumentoNegocioResponse execute(DocumentoNegocioRequest request) {
-        log.info("Iniciando creación de documento negocio para el proyecto: {}", request.proyectoId());
+        log.info("Iniciando creación de documento negocio");
         DocumentoNegocio documentoNegocio = new DocumentoNegocio();
         request.applyTo(documentoNegocio);
         documentoNegocio.setFechaCreacion(LocalDateTime.now());

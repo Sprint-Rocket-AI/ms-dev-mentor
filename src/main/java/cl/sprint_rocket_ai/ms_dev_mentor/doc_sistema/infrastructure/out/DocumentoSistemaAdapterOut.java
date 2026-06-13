@@ -34,11 +34,4 @@ public final class DocumentoSistemaAdapterOut implements DocumentoSistemaPortOut
         return documentoSistemaMongoRepository.findById(id);
     }
 
-    @Override
-    public List<DocumentoSistema> findByProyectoId(String proyectoId) {
-        log.info("Listando Documentos Sistemas por proyectoId: {}", proyectoId);
-        List<DocumentoSistema> docs = documentoSistemaMongoRepository.findByProyectoId(proyectoId);
-        log.info("Cantidad de documentos sistemas encontrados: {}",docs.size());
-        return docs;
-    }
 }

@@ -9,39 +9,7 @@ import java.util.List;
 @Document(collection = "documentos_lineamientos")
 public class DocumentoLineamiento extends Documento {
 
-    private String lineamiento;
-
-    private String dominio;
-
-    private String categoria;
-
     private List<String> tags;
-
-
-
-    public String getLineamiento() {
-        return lineamiento;
-    }
-
-    public void setLineamiento(String lineamiento) {
-        this.lineamiento = lineamiento;
-    }
-
-    public String getDominio() {
-        return dominio;
-    }
-
-    public void setDominio(String dominio) {
-        this.dominio = dominio;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
 
     public List<String> getTags() {
         return tags;

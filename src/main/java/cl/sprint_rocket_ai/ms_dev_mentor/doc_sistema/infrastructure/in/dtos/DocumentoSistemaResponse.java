@@ -1,6 +1,5 @@
 package cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.infrastructure.in.dtos;
 
-import cl.sprint_rocket_ai.ms_dev_mentor.commons.domain.enums.EstadoDocumento;
 import cl.sprint_rocket_ai.ms_dev_mentor.commons.domain.enums.TipoDocumento;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.domain.models.DocumentoSistema;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -16,12 +15,8 @@ public record DocumentoSistemaResponse(
     String titulo,
     @Schema(description = "Contenido del documento.", example = "El sistema seguirá un patrón de microservicios...")
     String contenido,
-    @Schema(description = "ID del proyecto al que pertenece.", example = "6653d50711312d1174a61516")
-    String proyectoId,
     @Schema(description = "Tipo de documento.", implementation = TipoDocumento.class)
     TipoDocumento tipo,
-    @Schema(description = "Estado del documento.", implementation = EstadoDocumento.class)
-    EstadoDocumento estado,
     @Schema(description = "URLs de repositorios asociados al documento.")
     List<String> urlRepos,
     @Schema(description = "Stack tecnologico del sistema.")
@@ -38,9 +33,7 @@ public record DocumentoSistemaResponse(
                 documento.getId(),
                 documento.getTitulo(),
                 documento.getContenido(),
-                documento.getProyectoId(),
                 documento.getTipoDocumento(),
-                documento.getEstado(),
                 documento.getUrlRepos(),
                 documento.getStack(),
                 documento.getDevs(),

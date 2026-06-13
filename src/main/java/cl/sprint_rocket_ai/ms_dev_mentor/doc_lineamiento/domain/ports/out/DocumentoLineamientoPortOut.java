@@ -11,6 +11,5 @@ public interface DocumentoLineamientoPortOut {
 
     Optional<DocumentoLineamiento> findById(String id);
 
-    List<DocumentoLineamiento> findByProyectoId(String proyectoId);
 }
 

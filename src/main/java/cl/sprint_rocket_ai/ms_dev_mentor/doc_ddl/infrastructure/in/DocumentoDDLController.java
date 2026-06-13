@@ -1,7 +1,6 @@
 package cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.infrastructure.in;
 
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.application.GetDocumentoDDLById;
-import cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.application.ListDocumentoDDLByProyecto;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.application.SaveDocumentoDDL;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.application.UpdateDocumentoDDL;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.infrastructure.in.dtos.DocumentoDDLRequest;
@@ -25,16 +24,13 @@ public final class DocumentoDDLController implements DocumentoDDLRest {
 
     private final SaveDocumentoDDL saveDocumentoDDL;
     private final GetDocumentoDDLById getDocumentoDDLById;
-    private final ListDocumentoDDLByProyecto listDocumentoDDLByProyecto;
     private final UpdateDocumentoDDL updateDocumentoDDL;
 
     public DocumentoDDLController(SaveDocumentoDDL saveDocumentoDDL,
                                   GetDocumentoDDLById getDocumentoDDLById,
-                                  ListDocumentoDDLByProyecto listDocumentoDDLByProyecto,
                                   UpdateDocumentoDDL updateDocumentoDDL) {
         this.saveDocumentoDDL = saveDocumentoDDL;
         this.getDocumentoDDLById = getDocumentoDDLById;
-        this.listDocumentoDDLByProyecto = listDocumentoDDLByProyecto;
         this.updateDocumentoDDL = updateDocumentoDDL;
     }
 
@@ -50,11 +46,6 @@ public final class DocumentoDDLController implements DocumentoDDLRest {
         return ResponseEntity.ok(getDocumentoDDLById.execute(id));
     }
 
-    @Override
-    @GetMapping("/proyecto/{proyectoId}")
-    public ResponseEntity<List<DocumentoDDLResponse>> getByProyectoId(@PathVariable String proyectoId) {
-        return ResponseEntity.ok(listDocumentoDDLByProyecto.execute(proyectoId));
-    }
 
     @Override
     @PutMapping("/{id}")

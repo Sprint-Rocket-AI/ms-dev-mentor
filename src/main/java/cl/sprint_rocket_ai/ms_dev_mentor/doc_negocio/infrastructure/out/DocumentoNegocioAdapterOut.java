@@ -35,12 +35,5 @@ public final class DocumentoNegocioAdapterOut implements DocumentoNegocioPortOut
         return documentoNegocioMongoRepository.findById(id);
     }
 
-    @Override
-    public List<DocumentoNegocio> findByProyectoId(String proyectoId) {
-        log.info("Listando Documentos de Negocio por proyectoId: {}", proyectoId);
-        List<DocumentoNegocio> docs = documentoNegocioMongoRepository.findByProyectoId(proyectoId);
-        log.info("Cantidad de documentos de negocio encontrados: {}", docs.size());
-        return docs;
-    }
 
 }

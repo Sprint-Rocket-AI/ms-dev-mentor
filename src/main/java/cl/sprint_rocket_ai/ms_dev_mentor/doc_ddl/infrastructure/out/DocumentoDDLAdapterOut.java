@@ -34,12 +34,5 @@ public final class DocumentoDDLAdapterOut implements DocumentoDDLPortOut {
         return documentoDDLMongoRepository.findById(id);
     }
 
-    @Override
-    public List<DocumentoDDL> findByProyectoId(String proyectoId) {
-        log.info("Listando Documentos DDL por proyectoId: {}", proyectoId);
-        List<DocumentoDDL> docs = documentoDDLMongoRepository.findByProyectoId(proyectoId);
-        log.info("Cantidad de documentos DDL encontrados: {}", docs.size());
-        return docs;
-    }
 }
 

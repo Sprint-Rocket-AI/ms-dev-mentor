@@ -8,6 +8,5 @@ import java.util.Optional;
 public interface DocumentoDDLPortOut {
     DocumentoDDL save(DocumentoDDL documentoDDL);
     Optional<DocumentoDDL> findById(String id);
-    List<DocumentoDDL> findByProyectoId(String proyectoId);
 }
 

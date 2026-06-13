@@ -1,6 +1,5 @@
 package cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.infrastructure.in.dtos;
 
-import cl.sprint_rocket_ai.ms_dev_mentor.commons.domain.enums.EstadoDocumento;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.domain.enums.MotorBaseDatos;
 import cl.sprint_rocket_ai.ms_dev_mentor.commons.domain.enums.TipoDocumento;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_ddl.domain.models.DocumentoDDL;
@@ -18,12 +17,8 @@ public record DocumentoDDLResponse(
         String titulo,
         @Schema(description = "Script DDL crudo enviado por el usuario.")
         String contenido,
-        @Schema(description = "ID del proyecto al que pertenece.", example = "6653d50711312d1174a61516")
-        String proyectoId,
         @Schema(description = "Tipo de documento.", implementation = TipoDocumento.class)
         TipoDocumento tipo,
-        @Schema(description = "Estado del documento.", implementation = EstadoDocumento.class)
-        EstadoDocumento estado,
         @Schema(description = "Motor de base de datos.", implementation = MotorBaseDatos.class)
         MotorBaseDatos motorBd,
         @Schema(description = "Versión del modelo de datos inferida.", example = "1.0")
@@ -40,9 +35,7 @@ public record DocumentoDDLResponse(
                 documento.getId(),
                 documento.getTitulo(),
                 documento.getContenido(),
-                documento.getProyectoId(),
                 documento.getTipoDocumento(),
-                documento.getEstado(),
                 documento.getMotorBd(),
                 documento.getVersion(),
                 Optional.ofNullable(documento.getTablas()).orElseGet(List::of)

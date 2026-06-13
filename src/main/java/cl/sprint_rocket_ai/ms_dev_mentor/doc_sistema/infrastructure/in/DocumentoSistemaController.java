@@ -1,7 +1,6 @@
 package cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.infrastructure.in;
 
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.application.GetDocumentoSistemaById;
-import cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.application.ListDocumentoSistemaByProyecto;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.application.SaveDocumentoSistema;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.application.UpdateDocumentoSistema;
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_sistema.infrastructure.in.dtos.DocumentoSistemaRequest;
@@ -11,21 +10,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/documentos-sistemas")
 public final class DocumentoSistemaController implements DocumentoSistemaRest {
 
     private final SaveDocumentoSistema saveDocumentoSistema;
     private final GetDocumentoSistemaById getDocumentoSistemaById;
-    private final ListDocumentoSistemaByProyecto listDocumentoSistemaByProyecto;
     private final UpdateDocumentoSistema updateDocumentoSistema;
 
-    public DocumentoSistemaController(SaveDocumentoSistema saveDocumentoSistema, GetDocumentoSistemaById getDocumentoSistemaById, ListDocumentoSistemaByProyecto listDocumentoSistemaByProyecto, UpdateDocumentoSistema updateDocumentoSistema) {
+    public DocumentoSistemaController(SaveDocumentoSistema saveDocumentoSistema,
+                                      GetDocumentoSistemaById getDocumentoSistemaById,
+                                      UpdateDocumentoSistema updateDocumentoSistema) {
         this.saveDocumentoSistema = saveDocumentoSistema;
         this.getDocumentoSistemaById = getDocumentoSistemaById;
-        this.listDocumentoSistemaByProyecto = listDocumentoSistemaByProyecto;
         this.updateDocumentoSistema = updateDocumentoSistema;
     }
 
@@ -41,11 +38,6 @@ public final class DocumentoSistemaController implements DocumentoSistemaRest {
         return ResponseEntity.ok(getDocumentoSistemaById.execute(id));
     }
 
-    @Override
-    @GetMapping("/proyecto/{proyectoId}")
-    public ResponseEntity<List<DocumentoSistemaResponse>> getByProyectoId(@PathVariable String proyectoId) {
-        return ResponseEntity.ok(listDocumentoSistemaByProyecto.execute(proyectoId));
-    }
 
     @Override
     @PutMapping("/{id}")

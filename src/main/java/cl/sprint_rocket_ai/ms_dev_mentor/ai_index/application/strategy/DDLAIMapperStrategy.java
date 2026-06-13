@@ -23,7 +23,6 @@ public class DDLAIMapperStrategy extends AbstractDocumentoAIMapperStrategy {
         );
 
         Map<String, Object> metadata = baseMetadata(documento);
-        metadata.put(META_PROYECTO_ID, documento.getProyectoId());
 
         return new AIIndexRequest(
                 documento.getId(),

@@ -25,7 +25,7 @@ public final class SaveDocumentoDDL {
     }
 
     public DocumentoDDLResponse execute(DocumentoDDLRequest request) {
-        log.info("Iniciando creación de documento DDL para el proyecto: {}", request.proyectoId());
+        log.info("Iniciando creación de documento DDL");
         DocumentoDDL documentoDDL = new DocumentoDDL();
         request.applyTo(documentoDDL);
         documentoDDL.setFechaCreacion(LocalDateTime.now());

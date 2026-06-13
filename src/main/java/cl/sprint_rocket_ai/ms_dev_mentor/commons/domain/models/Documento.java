@@ -1,6 +1,5 @@
 package cl.sprint_rocket_ai.ms_dev_mentor.commons.domain.models;
 
-import cl.sprint_rocket_ai.ms_dev_mentor.commons.domain.enums.EstadoDocumento;
 import cl.sprint_rocket_ai.ms_dev_mentor.commons.domain.enums.TipoDocumento;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -13,12 +12,7 @@ public abstract class Documento {
 
     private String titulo;
 
-    @Field("proyecto_id")
-    private String proyectoId;
-
     private String contenido;
-
-    private EstadoDocumento estado;
 
     @Field("fecha_creacion")
     private LocalDateTime fechaCreacion;
@@ -44,13 +38,6 @@ public abstract class Documento {
         this.titulo = titulo;
     }
 
-    public String getProyectoId() {
-        return proyectoId;
-    }
-
-    public void setProyectoId(String proyectoId) {
-        this.proyectoId = proyectoId;
-    }
 
     public String getContenido() {
         return contenido;
@@ -58,14 +45,6 @@ public abstract class Documento {
 
     public void setContenido(String contenido) {
         this.contenido = contenido;
-    }
-
-    public EstadoDocumento getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoDocumento estado) {
-        this.estado = estado;
     }
 
     public LocalDateTime getFechaCreacion() {
