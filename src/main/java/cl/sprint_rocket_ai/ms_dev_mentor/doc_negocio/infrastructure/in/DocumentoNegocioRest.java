@@ -4,7 +4,6 @@ import cl.sprint_rocket_ai.ms_dev_mentor.doc_negocio.infrastructure.in.dtos.Docu
 import cl.sprint_rocket_ai.ms_dev_mentor.doc_negocio.infrastructure.in.dtos.DocumentoNegocioResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -14,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
 
 @Tag(name = "Documentos de Negocio", description = "API para la gestión de documentos de negocio.")
 public interface DocumentoNegocioRest {
