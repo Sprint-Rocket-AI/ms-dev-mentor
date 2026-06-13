@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public final class SaveDocumentoSistema {
 
@@ -30,6 +32,8 @@ public final class SaveDocumentoSistema {
         documentoSistema.setUrlRepos(request.urlRepos());
         documentoSistema.setStack(request.stack());
         documentoSistema.setDevs(request.devs());
+        documentoSistema.setTags(request.tags());
+        documentoSistema.setFechaCreacion(LocalDateTime.now());
         DocumentoSistema documentoPersistido = repository.save(documentoSistema);
         aiIndexService.index(documentoPersistido);
         log.info("Fin de la creación del documento sistema con id: {}", documentoPersistido.getId());

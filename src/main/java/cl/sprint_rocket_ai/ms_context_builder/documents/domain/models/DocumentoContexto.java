@@ -25,6 +25,8 @@ public abstract class DocumentoContexto {
     @Field("tipo_documento")
     private TipoDocumento tipoDocumento;
 
+    public abstract DocumentoResponse toResponse();
+
     public String getId() {
         return id;
     }
@@ -40,7 +42,6 @@ public abstract class DocumentoContexto {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-
 
     public String getContenido() {
         return contenido;

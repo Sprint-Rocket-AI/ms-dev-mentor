@@ -1,7 +1,7 @@
 package cl.sprint_rocket_ai.ms_context_builder.documents.application.doc_ddl;
 
 import cl.sprint_rocket_ai.ms_context_builder.documents.domain.exceptions.EntityNotFoundException;
-import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.doc_ddl.DocumentoDDL;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoDDL;
 import cl.sprint_rocket_ai.ms_context_builder.documents.infrastructure.in.doc_ddl.dtos.DocumentoDDLRequest;
 import cl.sprint_rocket_ai.ms_context_builder.documents.infrastructure.in.doc_ddl.dtos.DocumentoDDLResponse;
 import cl.sprint_rocket_ai.ms_context_builder.documents.infrastructure.persistences.mongodb.DocumentoDDLMongoRepository;

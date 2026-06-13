@@ -1,13 +1,15 @@
-package cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.doc_ddl;
-
-import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoContexto;
+package cl.sprint_rocket_ai.ms_context_builder.documents.domain.models;
 
 import cl.sprint_rocket_ai.ms_context_builder.documents.domain.enums.MotorBaseDatos;
 import cl.sprint_rocket_ai.ms_context_builder.documents.domain.enums.TipoDocumento;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.doc_ddl.Tabla;
+import cl.sprint_rocket_ai.ms_context_builder.documents.infrastructure.in.doc_ddl.dtos.DocumentoDDLResponse;
+import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 
+@TypeAlias("DDL")
 public class DocumentoDDL extends DocumentoContexto {
 
     @Field("motor_bd")
@@ -43,6 +45,11 @@ public class DocumentoDDL extends DocumentoContexto {
 
     public void setTablas(List<Tabla> tablas) {
         this.tablas = tablas;
+    }
+
+    @Override
+    public DocumentoResponse toResponse() {
+        return DocumentoDDLResponse.from(this);
     }
 }
 

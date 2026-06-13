@@ -1,10 +1,9 @@
 package cl.sprint_rocket_ai.ms_context_builder.documents.application;
 
 import cl.sprint_rocket_ai.ms_context_builder.documents.domain.exceptions.EntityNotFoundException;
-import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoSistema;
-import cl.sprint_rocket_ai.ms_context_builder.documents.infrastructure.in.doc_sistema.dtos.DocumentoSistemaRequest;
-import cl.sprint_rocket_ai.ms_context_builder.documents.infrastructure.in.doc_sistema.dtos.DocumentoSistemaResponse;
-import cl.sprint_rocket_ai.ms_context_builder.documents.infrastructure.persistences.mongodb.DocumentoSistemaMongoRepository;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoContexto;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoResponse;
+import cl.sprint_rocket_ai.ms_context_builder.documents.infrastructure.persistences.mongodb.DocumentoLineamientoMongoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -13,26 +12,16 @@ import org.springframework.stereotype.Service;
 public final class GetDocumentoById {
 
     private static final Logger log = LoggerFactory.getLogger(GetDocumentoById.class);
-    private final DocumentoSistemaMongoRepository repository;
+    private final DocumentoLineamientoMongoRepository repository;
 
-    public GetDocumentoById(DocumentoSistemaMongoRepository repository) {
+    public GetDocumentoById(DocumentoLineamientoMongoRepository repository) {
         this.repository = repository;
     }
 
-    public DocumentoSistemaResponse execute(String id, DocumentoSistemaRequest documentoSistema) {
-        log.info("Iniciando actualización de documento sistema con id: {}", id);
+    public DocumentoResponse execute(String id) {
+        log.info("Iniciando búsqueda de documento por id: {}", id);
         return repository.findById(id)
-                .map(existingDocument -> {
-                    existingDocument.setTitulo(documentoSistema.titulo());
-                    existingDocument.setContenido(documentoSistema.contenido());
-                    existingDocument.setUrlRepos(documentoSistema.urlRepos());
-                    existingDocument.setStack(documentoSistema.stack());
-                    existingDocument.setDevs(documentoSistema.devs());
-                    DocumentoSistema updatedDocument = repository.save(existingDocument);
-                    log.info("Fin de la actualizacion del documento sistema con id: {}", id);
-                    return updatedDocument;
-                })
-                .map(DocumentoSistemaResponse::from)
+                .map(DocumentoContexto::toResponse)
                 .orElseThrow(()-> new EntityNotFoundException("documento sistema con id: " + id));
     }
 }

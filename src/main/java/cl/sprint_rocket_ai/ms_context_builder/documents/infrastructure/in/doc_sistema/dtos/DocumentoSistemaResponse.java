@@ -2,6 +2,7 @@ package cl.sprint_rocket_ai.ms_context_builder.documents.infrastructure.in.doc_s
 
 import cl.sprint_rocket_ai.ms_context_builder.documents.domain.enums.TipoDocumento;
 import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoSistema;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoResponse;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDateTime;
@@ -23,11 +24,13 @@ public record DocumentoSistemaResponse(
     List<String> stack,
     @Schema(description = "Equipo de desarrollo asociado.")
     List<String> devs,
+    @Schema(description = "Etiquetas del coumento.")
+    List<String> tags,
     @Schema(description = "Fecha de creación del documento.")
     LocalDateTime fechaCreacion,
     @Schema(description = "Fecha de la última actualización del documento.")
     LocalDateTime fechaActualizacion
-) {
+) implements DocumentoResponse {
     public static DocumentoSistemaResponse from(DocumentoSistema documento) {
         return new DocumentoSistemaResponse(
                 documento.getId(),
@@ -37,6 +40,7 @@ public record DocumentoSistemaResponse(
                 documento.getUrlRepos(),
                 documento.getStack(),
                 documento.getDevs(),
+                documento.getStack(),
                 documento.getFechaCreacion(),
                 documento.getFechaActualizacion()
         );

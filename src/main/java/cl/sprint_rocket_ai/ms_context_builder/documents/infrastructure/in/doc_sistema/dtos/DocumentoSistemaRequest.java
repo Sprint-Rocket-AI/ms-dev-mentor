@@ -17,13 +17,21 @@ import java.util.List;
     }
     """)
 public record DocumentoSistemaRequest(
-    @NotBlank(message = "El título es obligatorio") @Size(max = 200, message = "El título no puede superar los 200 caracteres") @Schema(description = "Título del documento.", example = "Diseño de la Arquitectura de Microservicios") String titulo,
+    @NotBlank(message = "El título es obligatorio") @Size(max = 200, message = "El título no puede superar los 200 caracteres") @Schema(description = "Título del documento.", example = "Diseño de la Arquitectura de Microservicios")
+    String titulo,
 
-    @NotBlank(message = "El contenido es obligatorio") @Schema(description = "Contenido del documento en formato Markdown o texto plano.", example = "El servicio de usuarios se comunicará con el servicio de pedidos a través de eventos...") String contenido,
+    @NotBlank(message = "El contenido es obligatorio") @Schema(description = "Contenido del documento en formato Markdown o texto plano.", example = "El servicio de usuarios se comunicará con el servicio de pedidos a través de eventos...")
+    String contenido,
 
-    @Schema(description = "URLs de repositorios asociados al documento.", example = "[\"https://github.com/empresa/usuarios-service\"]") List<String> urlRepos,
+    @Schema(description = "URLs de repositorios asociados al documento.", example = "[\"https://github.com/empresa/usuarios-service\"]")
+    List<String> urlRepos,
 
-    @Schema(description = "Stack tecnologico del sistema.", example = "[\"spring-boot\", \"mongodb\"]") List<String> stack,
+    @Schema(description = "Stack tecnologico del sistema.", example = "[\"spring-boot\", \"mongodb\"]")
+    List<String> stack,
 
-    @Schema(description = "Equipo de desarrollo asociado.", example = "[\"ana.perez\", \"carlos.rojas\"]") List<String> devs) {
+    @Schema(description = "Etiquetas asociadas.")
+    List<String> tags,
+
+    @Schema(description = "Equipo de desarrollo asociado.", example = "[\"ana.perez\", \"carlos.rojas\"]")
+    List<String> devs) {
 }

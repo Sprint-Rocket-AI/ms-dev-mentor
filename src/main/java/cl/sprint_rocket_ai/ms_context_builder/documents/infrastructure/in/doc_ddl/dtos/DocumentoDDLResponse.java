@@ -2,7 +2,8 @@ package cl.sprint_rocket_ai.ms_context_builder.documents.infrastructure.in.doc_d
 
 import cl.sprint_rocket_ai.ms_context_builder.documents.domain.enums.MotorBaseDatos;
 import cl.sprint_rocket_ai.ms_context_builder.documents.domain.enums.TipoDocumento;
-import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.doc_ddl.DocumentoDDL;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoDDL;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoResponse;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDateTime;
@@ -29,7 +30,7 @@ public record DocumentoDDLResponse(
         LocalDateTime fechaCreacion,
         @Schema(description = "Fecha de última actualización.")
         LocalDateTime fechaActualizacion
-) {
+) implements DocumentoResponse {
     public static DocumentoDDLResponse from(DocumentoDDL documento) {
         return new DocumentoDDLResponse(
                 documento.getId(),

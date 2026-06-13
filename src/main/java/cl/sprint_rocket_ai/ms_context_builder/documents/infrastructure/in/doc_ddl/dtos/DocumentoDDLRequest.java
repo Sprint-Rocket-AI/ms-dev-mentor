@@ -1,7 +1,7 @@
 package cl.sprint_rocket_ai.ms_context_builder.documents.infrastructure.in.doc_ddl.dtos;
 
 import cl.sprint_rocket_ai.ms_context_builder.documents.domain.enums.MotorBaseDatos;
-import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.doc_ddl.DocumentoDDL;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoDDL;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
