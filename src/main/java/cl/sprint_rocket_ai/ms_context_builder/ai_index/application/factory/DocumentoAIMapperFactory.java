@@ -1,7 +1,7 @@
 package cl.sprint_rocket_ai.ms_context_builder.ai_index.application.factory;
 
 import cl.sprint_rocket_ai.ms_context_builder.ai_index.application.strategy.*;
-import cl.sprint_rocket_ai.ms_context_builder.commons.domain.enums.TipoDocumento;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.enums.TipoDocumento;
 import org.springframework.stereotype.Component;
 
 /**

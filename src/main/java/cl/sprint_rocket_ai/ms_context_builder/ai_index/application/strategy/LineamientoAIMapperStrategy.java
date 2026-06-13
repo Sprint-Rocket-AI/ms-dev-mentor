@@ -1,9 +1,9 @@
 package cl.sprint_rocket_ai.ms_context_builder.ai_index.application.strategy;
 
 import cl.sprint_rocket_ai.ms_context_builder.ai_index.domain.models.AIIndexRequest;
-import cl.sprint_rocket_ai.ms_context_builder.commons.domain.enums.TipoDocumento;
-import cl.sprint_rocket_ai.ms_context_builder.commons.domain.models.Documento;
-import cl.sprint_rocket_ai.ms_context_builder.doc_lineamiento.domain.models.DocumentoLineamiento;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.enums.TipoDocumento;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoContexto;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoLineamiento;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -12,8 +12,8 @@ import java.util.Map;
 public class LineamientoAIMapperStrategy extends AbstractDocumentoAIMapperStrategy {
 
     @Override
-    public AIIndexRequest map(Documento documento) {
-        DocumentoLineamiento doc = (DocumentoLineamiento) documento;
+    public AIIndexRequest map(DocumentoContexto documentoContexto) {
+        DocumentoLineamiento doc = (DocumentoLineamiento) documentoContexto;
 
         String contenido = """
                 Lineamiento: %s

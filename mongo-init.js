@@ -9,11 +9,7 @@ db.createUser({
   ]
 });
 
-// 2. Crear colecciones explícitamente (opcional en Mongo, pero recomendado)
-db.createCollection('documentos_negocio');
-db.createCollection('documentos_lineamientos');
-db.createCollection('documentos_sistemas');
-db.createCollection('documentos_ddl');
+db.createCollection('documentos_contexto');
 
 
 print("Inicialización de la base de datos completada.");

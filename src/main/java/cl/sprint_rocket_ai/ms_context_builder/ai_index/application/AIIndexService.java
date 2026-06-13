@@ -4,8 +4,8 @@ import cl.sprint_rocket_ai.ms_context_builder.ai_index.application.factory.Docum
 import cl.sprint_rocket_ai.ms_context_builder.ai_index.application.strategy.AbstractDocumentoAIMapperStrategy;
 import cl.sprint_rocket_ai.ms_context_builder.ai_index.domain.models.AIIndexRequest;
 import cl.sprint_rocket_ai.ms_context_builder.ai_index.domain.ports.out.AIIndexPortOut;
-import cl.sprint_rocket_ai.ms_context_builder.commons.domain.enums.TipoDocumento;
-import cl.sprint_rocket_ai.ms_context_builder.commons.domain.models.Documento;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.enums.TipoDocumento;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoContexto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -26,11 +26,11 @@ public final class AIIndexService {
         this.aiIndexPortOut = aiIndexPortOut;
     }
 
-    public void index(Documento documento) {
-        TipoDocumento tipoDocumento = documento.getTipoDocumento();
+    public void index(DocumentoContexto documentoContexto) {
+        TipoDocumento tipoDocumento = documentoContexto.getTipoDocumento();
         log.info("Obtendiendo Mapper para tipo de documento: {}", tipoDocumento);
         AbstractDocumentoAIMapperStrategy mapper = documentoAIMapperFactory.getMapperByDocumentType(tipoDocumento);
-        AIIndexRequest request = mapper.map(documento);
+        AIIndexRequest request = mapper.map(documentoContexto);
         log.info("Mapper obtenido: {}", mapper.getClass().getSimpleName());
         log.info("Indexando Documento");
         aiIndexPortOut.index(request);

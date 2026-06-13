@@ -1,9 +1,9 @@
 package cl.sprint_rocket_ai.ms_context_builder.ai_index.application.strategy;
 
 import cl.sprint_rocket_ai.ms_context_builder.ai_index.domain.models.AIIndexRequest;
-import cl.sprint_rocket_ai.ms_context_builder.commons.domain.enums.TipoDocumento;
-import cl.sprint_rocket_ai.ms_context_builder.commons.domain.models.Documento;
-import cl.sprint_rocket_ai.ms_context_builder.doc_sistema.domain.models.DocumentoSistema;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.enums.TipoDocumento;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoContexto;
+import cl.sprint_rocket_ai.ms_context_builder.documents.domain.models.DocumentoSistema;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,8 +13,8 @@ import java.util.Map;
 public class SistemaAIMapperStrategy extends AbstractDocumentoAIMapperStrategy {
 
     @Override
-    public AIIndexRequest map(Documento documento) {
-        DocumentoSistema doc = (DocumentoSistema) documento;
+    public AIIndexRequest map(DocumentoContexto documentoContexto) {
+        DocumentoSistema doc = (DocumentoSistema) documentoContexto;
 
         List<String> stack = safeList(doc.getStack());
         String contenido = """
